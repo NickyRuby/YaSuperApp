@@ -64,6 +64,8 @@
         display: flex;
         position: relative;
         width:100%;
+        background-color: #fff;
+        border-radius: 12px 0px 0px 12px;   
         &-suggest {
           position: absolute;
           top: 0;

@@ -2,9 +2,12 @@
   <div class="Widgets">
     <div class="Widget">
       <div class="Widget__tabs">
-        <div class="Widget__tabs-item" v-for="tabName in tabs" v-bind:key="tabName">{{tabName}}</div>
+        <div :style="setActive" 
+          v-for="tab in tabs" :key="tab" 
+          :class="['Widget__tabs-item', {active: activeTab === tab.name}]" 
+          @click="activeTab = tab.name">{{tab.name}} </div>
       </div>
-      <div class="Widget__cards">
+      <div class="Widget__cards">   
         <WidgetCard :sourceIcon="widgetData[0].sourceIcon" :sourceName="widgetData[0].sourceName" :cardTitle="widgetData[0].cardTitle" />
         <CoronaWidget />
       </div>
@@ -21,7 +24,13 @@ export default {
   },
   data() {
     return {
-      tabs: ['Важное', 'Коронавирус', 'Новости', 'Котировки'],
+      activeTab: 'Важное',
+      tabs: [
+        {name: 'Важное', isActive: false},
+        {name: 'Коронавирус', isActive: false},
+        {name: 'Новости', isActive: false},
+        {name: 'Котировки', isActive: false}
+      ],
       widgetData: [
           { 
               sourceIcon: 'https://sun1-20.userapi.com/ynoXmmMlUIgpplZ9krLihqIbQ_WnS8ynZ8ewjQ/xK33ESMfgF0.jpg?ava=1',
@@ -35,6 +44,11 @@ export default {
     icon: String,
     title: String,
   },
+  computed: {
+    setActive() {
+      return 
+    }
+  }
 };
 </script>
 
@@ -42,13 +56,14 @@ export default {
 .Widget {
   background-color: white;
   margin: 24px 4px;
-  padding: 15px;
+  padding: 16px 10px;
   padding-right: 0;
   border-radius: 24px;
 
   &__tabs {
     display: flex;
     width: 100%;
+    margin-bottom: 8px;
     overflow: scroll;
     margin-right: -16px;
     &::-webkit-scrollbar {
@@ -56,18 +71,17 @@ export default {
     }
 
     &-item {
-      margin-right: 8px;
       font-size: 14px;
       line-height: 18px;
-      font-weight: medium;
-      padding: 8px;
+      padding: 8px 12px;
     }
   }
   &__cards {
     display: flex;
-    margin-top: 8px;
-    margin-left: -16px;
+    margin-left: -10px;
+    margin-right: 1px;
     overflow: auto;
+    padding-bottom: 4px;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -111,5 +125,9 @@ export default {
       }
     }
   }
+}
+.active {
+  background-color: #FBE578;
+  border-radius: 16px;
 }
 </style>

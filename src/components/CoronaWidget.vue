@@ -41,8 +41,10 @@
                 &-icon {
                     width: 16px;
                     height: 16px;
-                    background-color: blueviolet;
                     margin-right: 4px;
+                    background: url('https://yastatic.net/s3/front-maps-static/front-maps/_/8eb9b398c247b7bfa3088a7a16dfd7d8.svg') center center #4f8bfa;
+                    border-radius: 50%;
+                    background-size: 14px 14px;
                 }
                 &-title {
                     font-size: 12px;
@@ -55,10 +57,10 @@
             &-data {
                 display: flex;
                 align-items: center;
-                margin-top: 10  px;
+                margin-top: 6px;
 
                 &-mark {
-                font-size: 32px;
+                font-size: 28px;
                 line-height: 40px;
                 font-weight: 500;
                 padding: 0px 16px 0 14px;
