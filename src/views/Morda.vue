@@ -6,8 +6,10 @@
       <Services />
       <!-- <div class="handlebar"></div>  -->
     </div>
+    <div class="dissapearing">
     <Widget />
     <Card :title="cards[0].title" :about="cards[0].about" :source="cards[0].source" :sourceIcon="cards[0].sourceIcon" :cover="cards[0].cover" :date="cards[0].date"  />
+    </div>
   </div>
 </template>
 
@@ -36,7 +38,44 @@ export default {
         }
       ]
     }
-  }
+  },
+    methods: {
+    testMethod(event) {
+      
+      console.log(event);
+      console.log(event.touches[0]);
+      console.log(event.touches[0].clientY);
+    // console.log(event);
+    },
+    increaseWidth(event) {
+
+      let dissapearing = this.$el.getElementsByClassName('dissapearing')[0];
+      let draggable = this.$el.getElementsByClassName('App__apps-container')[0];
+      // console.log(dissapearing);
+      // console.log(draggable);
+      let handlePos = event.touches[0].clientY;
+      let viewportHeight = event.view.innerHeight;
+
+      let startFillRate = draggable.getBoundingClientRect().height * 100 / viewportHeight ;
+      let opacity = Number(dissapearing.style.opacity);
+      
+      // высчитать какой % от шкалы текущее положение clientY
+        let newfillRate = handlePos * 100 / viewportHeight;
+        
+      // присвоить это значение драггабл
+        draggable.setAttribute("style",`height:${newfillRate}vh`);
+      
+      // привязать заполнение к опасити
+        console.log(opacity);
+        let newOpacity = opacity - 4 * (newfillRate-startFillRate)/100;
+        console.log(newOpacity);
+        dissapearing.setAttribute("style",`opacity: ${newOpacity}`);
+  
+      }
+  },
+  mounted() {
+    this.$el.getElementsByClassName('App__apps-container')[0].addEventListener('touchmove', event => this.increaseWidth(event));
+    }  
 }
 </script>
 

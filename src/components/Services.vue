@@ -25,7 +25,17 @@ export default {
                 
             ]
         }
-    }        
+    },
+//     methods: {
+//     testMethod(event) {
+//     //   console.log(event.touches[0]);
+//     //   console.log(event.touches[0].clientY);
+//     console.log(event);
+//     }
+//   },
+//   mounted() {
+//     this.$el.addEventListener('touchmove', event => this.testMethod(this.$el));
+//     }        
 }
 </script>
 
